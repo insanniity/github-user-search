@@ -1,8 +1,15 @@
 import React from 'react';
+import Button from '../../core/components/Button';
+import ProfileCard from './components/ProfileCard';
+import SearchCard from './components/SearchCard';
+//import './styles.scss'
 
 const Search = () => {
     return (
-        <h1>search</h1>
+        <>
+            <SearchCard />
+            <ProfileCard />
+        </>
     )
 };
 

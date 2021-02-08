@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss'
 
 const TopNavBar = () => {
     return(
         <nav className="navbar bg-primary">
             <div className="container-fluid">
-                <a href="link"><div className="navbar-title" >Bootcamp DevSuperior </div></a>
+                <Link to="/">
+                    <div className="navbar-title">Bootcamp DevSuperior</div>
+                </Link>                
             </div>
         </nav>
     )
