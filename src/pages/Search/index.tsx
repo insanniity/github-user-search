@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { User } from '../../core/types/User';
 import { request } from '../../core/utils/request';
+import Loader from './components/Loader';
 import ProfileCard from './components/ProfileCard';
 import './styles.scss'
 
 const Search = () => {
     const [search, setSearch] = useState('insanniity');
     const [user, setUser] = useState<User>();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = (event: { preventDefault: () => void; }) =>{
         event.preventDefault();
-        request({url: search}).then(response => setUser(response.data));
+        setIsLoading(true);
+        request({url: search})
+        .then(response => setUser(response.data))
+        .finally(()=>{setIsLoading(false)});
     }
     const handleChange = (event: { target: { value: any; }; }) => {
         setSearch(event.target.value);
@@ -28,7 +33,15 @@ const Search = () => {
                     </form>                    
                 </div>
             </div> 
-            {user ? (<ProfileCard user={user} />) : ""}    
+
+            {user ? (                
+                <div className="card profile-content-card">
+                    {isLoading ? <Loader /> : (<ProfileCard user={user} />)}                    
+                </div>
+            ) : ""} 
+                  
+            
+               
         </>
     )
 };

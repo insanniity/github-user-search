@@ -4,6 +4,7 @@ import Button from '../../../../core/components/Button';
 import { User } from '../../../../core/types/User';
 import FieldDetail from '../FieldDetail';
 import Info from '../Info';
+import Loader from '../Loader';
 import './styles.scss';
 
 type Props = {
@@ -12,8 +13,8 @@ type Props = {
 
 const ProfileCard = ({user}:Props) => {
     return (
-        <>
-            <div className="card profile-content-card">
+        <>  
+            
                 <div className="card-body row">                    
                     <div className="col-2">
                         <img src={user.avatar_url} className="profile-image" />
@@ -32,7 +33,7 @@ const ProfileCard = ({user}:Props) => {
                             </div>
                     </div>
                 </div>
-            </div>            
+                     
         </>
     )
 };
