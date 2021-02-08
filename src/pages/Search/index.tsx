@@ -6,12 +6,14 @@ import ProfileCard from './components/ProfileCard';
 import './styles.scss'
 
 const Search = () => {
-    const [search, setSearch] = useState('insanniity');
+    const [search, setSearch] = useState('');
     const [user, setUser] = useState<User>();
     const [isLoading, setIsLoading] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     const handleSubmit = (event: { preventDefault: () => void; }) =>{
         event.preventDefault();
+        setIsVisible(true);
         setIsLoading(true);
         request({url: search})
         .then(response => setUser(response.data))
@@ -33,12 +35,12 @@ const Search = () => {
                     </form>                    
                 </div>
             </div> 
-
+            
             {user ? (                
                 <div className="card profile-content-card">
-                    {isLoading ? <Loader /> : (<ProfileCard user={user} />)}                    
+                    {isLoading ? (<Loader />) : (<ProfileCard user={user} />)}                    
                 </div>
-            ) : ""} 
+            ) : (<>{isVisible ? (<div className="card profile-content-card"><h1>Usuário não encontrado</h1></div>) : ""}</>)} 
                   
             
                

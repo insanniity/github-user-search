@@ -30,5 +30,5 @@ export type User ={
     followers?: string;
     following?: string;
     created_at?: string;
-    updated_at?: string
+    updated_at?: string;
 }

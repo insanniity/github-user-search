@@ -5,15 +5,12 @@ import FieldDetail from '../FieldDetail';
 import Info from '../Info';
 import './styles.scss';
 
-
-
 type Props = {
     user: User;
 }
 
-const ProfileCard = ({user}:Props) => {
+const ProfileCard = ({user}:Props) => {    
     user.created_at = dayjs(user.created_at).format('DD/MM/YYYY');
-
     return (
         <> 
             <div className="card-body row">                    
