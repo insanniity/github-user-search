@@ -3,7 +3,7 @@ import './styles.scss'
 
 type Props = {
     campo:string;
-    informacao: string;
+    informacao?: string;
 }
 
 const FieldDetail = ({campo, informacao}: Props) => {

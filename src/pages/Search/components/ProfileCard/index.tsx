@@ -1,30 +1,34 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Button from '../../../../core/components/Button';
+import { User } from '../../../../core/types/User';
 import FieldDetail from '../FieldDetail';
 import Info from '../Info';
-import './styles.scss'
+import './styles.scss';
 
-const ProfileCard = () => {
+type Props = {
+    user: User;
+}
+
+const ProfileCard = ({user}:Props) => {
     return (
         <>
             <div className="card profile-content-card">
                 <div className="card-body row">                    
                     <div className="col-2">
-                        <img src="https://avatars.githubusercontent.com/u/32269793?v=4" className="profile-image" />
-                        
-                        <Button text="Ver perfil" urlButton="" />
+                        <img src={user.avatar_url} className="profile-image" />
+                        <a href={user.html_url} className="btn button-bg">Ver perfil</a> 
                     </div>
                     <div className="col-9 card-profile-infos">                      
-                            <Info text="Repositórios públicos" number="62" />
-                            <Info text="Seguidores" number="62" />
-                            <Info text="Seguindo" number="62" />                            
+                            <Info text="Repositórios públicos" number={user.public_repos} />
+                            <Info text="Seguidores" number={user.followers} />
+                            <Info text="Seguindo" number={user.following} />                            
                             <div className="card-profile-details col-12">
                                 <h1 className="details-title">Informações</h1>
-                                <FieldDetail campo="Empresa" informacao="@ZupIT" />
-                                <FieldDetail campo="Website/Blog" informacao="https://thewashington.dev" />
-                                <FieldDetail campo="Localidade:" informacao="Uberlândia" />
-                                <FieldDetail campo="Membro desde"informacao="19/10/2013" />
-
+                                <FieldDetail campo="Empresa" informacao={user.company} />
+                                <FieldDetail campo="Website/Blog" informacao={user.blog} />
+                                <FieldDetail campo="Localidade" informacao={user.location} />
+                                <FieldDetail campo="Membro desde"informacao={user.created_at} />
                             </div>
                     </div>
                 </div>

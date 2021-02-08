@@ -3,7 +3,7 @@ import './styles.scss'
 
 type Props = {
     text:string;
-    number: string;
+    number?: string;
 }
 
 const Info = ({text, number}: Props) => {
