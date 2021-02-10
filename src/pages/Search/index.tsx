@@ -12,8 +12,7 @@ const Search = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const handleSubmit = (event: { preventDefault: () => void; }) =>{
-        event.preventDefault();
-        setIsVisible(true);
+        event.preventDefault();        
         setIsLoading(true);
         request({url: search})
         .then(response => setUser(response.data))
@@ -21,6 +20,10 @@ const Search = () => {
     }
     const handleChange = (event: { target: { value: any; }; }) => {
         setSearch(event.target.value);
+    }
+
+    const handleClick = ( ) => {
+        setIsVisible(true);
     }
     return (
         <>
@@ -30,17 +33,18 @@ const Search = () => {
                     <form onSubmit={handleSubmit}>
                         <input className="form-control input-search" value={search} onChange={handleChange} required placeholder="Usuário Github"></input>
                         <div className="button-search">
-                            <button type="submit" className="btn button-bg">Procurar</button>
+                            <button type="submit" className="btn button-bg" onClick={handleClick}>Procurar</button>
                         </div>
                     </form>                    
                 </div>
             </div> 
             
-            {user ? (                
-                <div className="card profile-content-card">
-                    {isLoading ? (<Loader />) : (<ProfileCard user={user} />)}                    
-                </div>
-            ) : (<>{isVisible ? (<div className="card profile-content-card"><h1>Usuário não encontrado</h1></div>) : ""}</>)} 
+            {isVisible && search ? (<div className="card profile-content-card"> 
+                {isLoading ? (<Loader />) : (<>
+                    {user ? (<ProfileCard user={user} />) : (<h1>Usuário não encontrado</h1>)}
+                </>)}
+            </div>) : ""}
+
                   
             
                
